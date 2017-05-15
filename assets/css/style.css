@@ -1,0 +1,11 @@
+.flex-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.gif {
+	align-self: center;
+	-webkit-align-self: center;
+}
