@@ -12,55 +12,56 @@ $(document).ready(function(){
 	})
 
 	var offsetCounter = 0; // ask how to avoid using these global variable. 
-	var temp = "we"; // global
+	var temp = "string"; // global
 	var searchParameters;
 
-	function comparison(current, previous) {
-		this.current = current
-		this.previous = previous 
+	function comparison(currentEntry, previousEntry) {
+		this.currentEntry = currentEntry
+		this.previousEntry = previousEntry 
 		}
 
-	var compareTo = new comparison(searchParameters, temp)
+	var compare = new comparison(searchParameters, temp)
 
 
 	function grabSearchParameters() {
 
-		compareTo.current = $("#searchQuery").val() 
-		console.log(compareTo.previous)
+		compare.currentEntry = $("#searchQuery").val() 
+		console.log(compare.previousEntry)
 
 
-		console.log(compareTo.current)
-		if (compareTo.current === "") {
+		console.log(compare.currentEntry)
+		if (compare.currentEntry === "") {
 			alert("Please enter something to search")
 		} 
 
-		if (compareTo.current == compareTo.previous) {
-    		ajaxCallback()
+		if (compare.currentEntry == compare.previousEntry) {
 			offsetCounter +=4
-			console.log("search parameter is " + compareTo.current + " and temp is "+ compareTo.previous + " and offsetCounter is" + offsetCounter)
+    		ajaxCallback()
+			console.log("search parameter is " + compare.currentEntry + " and temp is "+ compare.previousEntry + " and offsetCounter is" + offsetCounter)
 
 		} else {
-			ajaxCallback()
 			offsetCounter = 0 
-			console.log("search parameter is " + compareTo.current + " and temp is "+ compareTo.previous + " and offsetCounter is" + offsetCounter)
+			ajaxCallback()
+			compare.previousEntry = compare.currentEntry 
+			console.log("search parameter is " + compare.currentEntry + " and temp is "+ compare.previousEntry + " and offsetCounter is" + offsetCounter)
 
 
 		}
 
 		console.log(typeof $("#searchQuery").val())
-		console.log(typeof compareTo.previous)
+		console.log(typeof compare.previousEntry)
 		console.log(temp)
-		console.log(compareTo.current)
+		console.log(compare.currentEntry)
 		console.log(offsetCounter)
 
-		return compareTo.previous, compareTo.current
+		return compare.previousEntry, compare.currentEntry
 		ajaxCallback()
 
 	}
 
 	function ajaxCallback() {
 		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
-		    compareTo.current + "&api_key=dc6zaTOxFJmzC&limit=4&offset=" + offsetCounter;
+		    compare.currentEntry + "&api_key=dc6zaTOxFJmzC&limit=4&offset=" + offsetCounter;
 		$.ajax({
 			url: queryURL,
 			method: "GET"
