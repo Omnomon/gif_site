@@ -18,6 +18,7 @@ $(document).ready(function() {
     var searchParameters;
     var testArray = ["birds", "cats", "dogs"]
     var compare = new comparison(searchParameters, temp)
+    var entry = [];
 
 
 
@@ -62,8 +63,9 @@ $(document).ready(function() {
 
         compare.currentEntry = $("#searchQuery").val()
         console.log("current search parameter is " + compare.currentEntry + " and temp is " + compare.previousEntry + " and old offsetCounter is " + offsetCounter)
-        appendEntryToButtonsDiv()
         changeOffsetCounter()
+        appendEntryToButtonsDiv()
+
 
     }
 
@@ -75,8 +77,17 @@ $(document).ready(function() {
     //--------------------------------------------------------------------------------------------------------------------------
 
     function appendEntryToButtonsDiv() {
-    	var entry = [compare.currentEntry]
-    	createDynamicButtons(entry)
+    	if (compare.currentEntry === "") {
+            alert("Please enter something to search");
+            return console.log("blank query")
+        } else if (compare.currentEntry === entry[entry.length-1]){
+        	return console.log("already searched")
+        } else {
+        	entry.push(compare.currentEntry)
+	    	var passEntry = [entry[entry.length-1]]
+	    	createDynamicButtons(passEntry)
+        }
+
     }
 
 
@@ -89,9 +100,7 @@ $(document).ready(function() {
     function changeOffsetCounter() {
 
         console.log(compare.currentEntry)
-        if (compare.currentEntry === "") {
-            alert("Please enter something to search")
-        }
+
 
         if (compare.currentEntry == compare.previousEntry) {
             offsetCounter += 4
