@@ -6,7 +6,9 @@ $(document).ready(function() {
     //               write a function that if index[i] = -1, go to index[0]
     // 			     make preset buttons with array // to do 
     //               make gif pause // check 
-
+   	//				 dropdown filter by rating, etc 
+   	//				 tie counter into searchquery object so that it doesn't go back refresh the first item?
+   	//				 css background 
     // -------------------------------------------------------------------------------------------------------------------------
     //
     //  Define shared global variables here 
@@ -35,6 +37,19 @@ $(document).ready(function() {
         if (event.keyCode === 13) {
             grabSearchParameters()
         }
+    })
+
+    $("#emptyButton").click(function(){
+    		$(".is-narrow")
+    			.animate({               
+                	opacity: "0.001"}, 500)
+    		setTimeout(function(){
+    		$(".is-narrow")
+    			.empty()
+    			.animate({
+    				opacity: "1.0"
+    			}, 10)
+    		},501)
     })
 
     createDynamicButtons(testArray)
@@ -196,6 +211,7 @@ $(document).ready(function() {
                     compare.currentEntry = $(this).attr("queryIs")
                     changeOffsetCounter()
                 })
+                .blur()
         }
 
         $("#createButtonsContainer").append(createButtons)
