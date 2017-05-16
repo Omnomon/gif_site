@@ -80,13 +80,16 @@ $(document).ready(function() {
     	if (compare.currentEntry === "") {
             alert("Please enter something to search");
             return console.log("blank query")
-        } else if (compare.currentEntry === entry[entry.length-1]){
+        } 
+        for (let value of entry) {                    // yay changed for loop to ES6
+        	if (compare.currentEntry === value){
         	return console.log("already searched")
-        } else {
+        	}   	
+        } 
+        console.log("new search")
         	entry.push(compare.currentEntry)
 	    	var passEntry = [entry[entry.length-1]]
 	    	createDynamicButtons(passEntry)
-        }
 
     }
 
