@@ -9,6 +9,9 @@ $(document).ready(function() {
    	//				 dropdown filter by rating, etc 
    	//				 tie counter into searchquery object so that it doesn't go back refresh the first item?
    	//				 css background 
+   	//				 learn how to use other frameworks
+   	//				 get more comfortable with for .. of 
+   	// 				 add pseudoclasses with css or javascript 
     // -------------------------------------------------------------------------------------------------------------------------
     //
     //  Define shared global variables here 
@@ -210,8 +213,8 @@ $(document).ready(function() {
                 .click(function() {
                     compare.currentEntry = $(this).attr("queryIs")
                     changeOffsetCounter()
+                    $(this).blur
                 })
-                .blur()
         }
 
         $("#createButtonsContainer").append(createButtons)
