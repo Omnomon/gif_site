@@ -43,6 +43,7 @@ $(document).ready(function() {
     })
 
     $("#emptyButton").click(function(){
+
     		$(".is-narrow")
     			.animate({               
                 	opacity: "0.001"}, 500)
@@ -78,7 +79,6 @@ $(document).ready(function() {
 
 
     function grabSearchParameters() {
-
         compare.currentEntry = $("#searchQuery").val()
         console.log("current search parameter is " + compare.currentEntry + " and temp is " + compare.previousEntry + " and old offsetCounter is " + offsetCounter)
         changeOffsetCounter()
@@ -211,9 +211,9 @@ $(document).ready(function() {
                 .html(array[i])
                 .attr("queryIs", array[i])
                 .click(function() {
-                    compare.currentEntry = $(this).attr("queryIs")
-                    changeOffsetCounter()
-                    $(this).blur
+                    compare.currentEntry = $(this).attr("queryIs");
+                    changeOffsetCounter();
+                    $(this).blur()
                 })
         }
 
